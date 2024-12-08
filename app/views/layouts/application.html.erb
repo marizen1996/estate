@@ -92,6 +92,11 @@
       </nav>
    
   </header>
+   <p id="notice"><%= notice %></p>
+        <div class="d-flex justify-content-center mb-2">
+          <%= render 'searches/search' %>
+        </div>
+    <!--%= render 'searches/search', searches: @search %>-->
   
     <%= yield %>
   </body>
