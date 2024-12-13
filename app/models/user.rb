@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
          has_one_attached :profile_image
-         
-         
+
+
    GUEST_USER_EMAIL = "guest@example.com"
 
    def self.guest
@@ -15,8 +15,8 @@ class User < ApplicationRecord
        user.name = "guestuser"
    end
  end
- 
- 
+
+
  def update_without_current_password(params, *options)
 
     if params[:password].blank? && params[:password_confirmation].blank?
@@ -28,23 +28,23 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
-  
-  
+
+
          has_many :posts, dependent: :destroy
          has_many :post_comments, dependent: :destroy
          has_many :goods, dependent: :destroy
-         
-         
-         
+
+
+
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
-  
-  end 
-  
+
+  end
+
   # def self.looks(search, word)
   #   if search == "perfect_match"
   #     @user = User.where("name LIKE?", "#{word}")
@@ -58,7 +58,7 @@ class User < ApplicationRecord
   #     @user = User.all
   #   end
   # end
-  
+
    def self.search_for(content, method)
     if method == 'perfect'
       User.where(name: content)
@@ -70,6 +70,6 @@ class User < ApplicationRecord
       User.where('name LIKE ?', '%' + content + '%')
     end
   end
-  
-  
-end 
+
+
+end

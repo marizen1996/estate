@@ -1,0 +1,96 @@
+<div class="post-detail py-5 bg-light">
+  <div class="container">
+    <div class="card mx-auto mt-4 shadow-lg">
+      <% @post.images.each do |image |%>
+       <%= image_tag image, class:"card-img-top" %>
+       <% end %>
+      
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 col-md-2">
+            <%= image_tag @post.user.get_profile_image(100, 100), class: "img-fluid rounded-circle" %>
+          </div>
+
+      <div class="col-sm-12 col-md-10">
+            <p class="card-title">
+              <%= link_to(post_path(@post.id), class:"text-dark") do %>
+                <strong><i class="fa-solid fa-building"></i><span> <%= @post.property_name %></span></strong>
+              <% end %>
+            </p>
+      <p class="card-title">説明：<%= @post.caption %></p>
+      <span><i class="fa-solid fa-user"></i> By <%= @post.user.name %> ｜ </span>
+      
+      
+      <span><i class="fa-solid fa-comment"></i> <%= link_to "#{@post.post_comments.count}", post_path(@post.id), class:"text-dark" %> ｜ </span>
+            <% if @post.gooded_by?(current_user) %><span><i class="fa-solid fa-calendar-days"></i> <%= @post.created_at.strftime('%Y/%m/%d') %> ｜ </span>
+      <span>
+            <%= link_to(post_good_path(@post), class:"text-dark", method: :delete) do %>
+            <i class="fa-solid fa-heart"></i> <%= @post.goods.count %>
+            <% end %>
+      </span>
+      
+      <% else %>
+      <span>
+      <%= link_to(post_good_path(@post), class:"text-dark", method: :post) do %>
+      <i class="fa-solid fa-heart"></i> <%= @post.goods.count %>
+      <% end %>
+      </span>
+      <% end %>
+      
+      <% if @post.user == current_user %>
+      <span> ｜ </span><%= link_to "削除", post_path(@post), class:"text-dark", method: :delete %>
+      <% end %>
+      </div>
+      </div>
+
+  <!--%= image_tag @post.get_image %>-->
+  <!--<p>物件名：%= @post.property_name %></p>-->
+  <!--<p>説明：%= @post.caption %></p>-->
+  <!--<p>投稿ユーザー画像：%= image_tag @post.user.get_profile_image(100,100) %></p>-->
+  <!--<p>ユーザーネーム：%= @post.user.name %></p>-->
+  <!--<p>投稿日：%= @post.created_at.strftime('%Y/%m/%d') %></p>-->
+
+  <!--  % if @post.user == current_user %>-->
+  <!--  %= link_to "削除", post_path(@post), method: :delete %>-->
+  <!--% end %>-->
+  <!--</div>-->
+
+  <div>
+  <p>コメント件数：<%= @post.post_comments.count %></p>
+  <% @post.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+
+    <% if post_comment.user == current_user %>
+    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+    <% end %>
+
+    <% if @post.gooded_by?(current_user) %>
+    <p>
+      <%= link_to post_good_path(@post), method: :delete do %>
+        ♥<%= @post.goods.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_good_path(@post), method: :post do %>
+        ♡<%= @post.goods.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+  <% end %>
+</div>
+
+
+<div>
+  <%= form_with model: [@post, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+
+</div>
+</div>
+</div>

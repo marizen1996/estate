@@ -92,11 +92,12 @@
       </nav>
    
   </header>
+  <% if @user == current_user %>
    <p id="notice"><%= notice %></p>
         <div class="d-flex justify-content-center mb-2">
-          <%= render 'searches/search' %>
+          <%= render 'public/searches/search' %>
         </div>
-    <!--%= render 'searches/search', searches: @search %>-->
+  <% end %>
   
     <%= yield %>
   </body>
@@ -113,10 +114,10 @@
             <h6 class="text-white mt-2 mb-3">Link</h6>
             <ul class="p-0 list-unstyled">
               <li>
-                <a href="" title="About" class="text-white-50">会社概要</a>
+                <a href="" title="About" class="text-white">会社概要</a>
               </li>
               <li>
-                <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
+                <a href="" title="License informations" class="text-white">プライバシーポリシー</a>
               </li>
             </ul>
           </div>
