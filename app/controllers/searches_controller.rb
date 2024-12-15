@@ -1,17 +1,4 @@
-# class SearchesController < ApplicationController
-#   before_action :authenticate_user!
-
-#   def search
-#     @range = params[:range]
-
-#     if @range == "User"
-#       @users = User.looks(params[:search], params[:word])
-#     else
-#       @posts = Post.looks(params[:search], params[:word])
-#     end
-#   end
-# end
-
+# 検索機能
 class SearchesController < ApplicationController
   before_action :authenticate_user!
 
@@ -20,9 +7,9 @@ class SearchesController < ApplicationController
 		@content = params[:content]
 		@method = params[:method]
 		if @model == 'user'
-			@records = User.search_for(@content, @method)
+		@records = User.search_for(@content, @method)
 		else
-			@records = Post.search_for(@content, @method)
+		@records = Post.search_for(@content, @method)
 		end
-	end
+    end
 end

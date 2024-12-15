@@ -1,42 +1,39 @@
+<!--投稿表示 discavary,mypage-->
 <div class="card-list-container py-5">
-  <% posts.each do |post| %>
-  <div class="card w-50 mx-auto mt-4 shadow-lg">
+  <% posts.each do |post | %>
+    <!--% post.images.each do |image| %>-->
+    <div class="card w-50 mx-auto mt-4 shadow-lg">
+      <%= link_to post_path(post.id) do %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-2">
+              <%= image_tag post.user.get_profile_image(80,80) , class: "mt-3 rounded-circle"; %>
+            </div>
+            <div class="col-10">
+              <p class="card-title">
+                <%= link_to(post_path(post.id), class: "text-dark") do %>
+                  <strong><i class="fa-solid fa-building"></i><span> <%= post.property_name %></span></strong>
+                <% end %>
+              </p>
+              <p class="card-text">
+                説明：<%= post.caption %>
+              </p>
+            </div>
 
-    <%= link_to post_path(post.id) do %>
-    
+            <span><i class="fas fa-user"></i> By <%= post.user.name %> ｜ </span>
+            <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class: "text-dark" %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-    
-    
+    <% if @user == current_user %>
+      <p><%= link_to "編集", edit_post_path(@user) %></p>
     <% end %>
 
-     <div class="card-body">
-      <div class="row">
-        <div class="col-2">
-        <%= image_tag post.user.get_profile_image(100,100) , class: "mt-3 rounded-circle"; %>
-        </div>
-
-      <div class="col-10">
-          <p class="card-title">
-            <%= link_to(post_path(post.id), class: "text-dark") do %>
-              <strong><i class="fa-solid fa-building"></i><span> <%= post.property_name %></span></strong>
-            <% end %>
-          </p>
-
-     <p class="card-text">説明：<%= post.caption %></p>
-     <span><i class="fas fa-user"></i> By <%= post.user.name %> ｜ </span>
-
-     <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class: "text-dark" %></span>
-  
-  
-  <% if @user == current_user %>
-    <p><%= link_to "編集", edit_post_path(@user) %></p>
   <% end %>
-  
-      </div>
-      </div>
-      </div>
-      </div>
 
-  <% end %>
-  <%= paginate posts %>
 </div>
+
+<%= paginate posts %>
+

@@ -15,14 +15,14 @@
             <% end %>
           </ul>
         <% end %>
-        
+
 <%= form_with model: @post do |f| %>
-          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+          <%= f.file_field :images, multiple: true, accept: "image/*", class: "w-100" %>
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
             </div>
-            
+
 <%= f.text_field :property_name, class: "form-control", placeholder: "物件名" %>
           </div>
 

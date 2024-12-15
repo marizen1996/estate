@@ -1,4 +1,6 @@
 class Public:: PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @post = Post.new
   end
@@ -45,7 +47,7 @@ class Public:: PostsController < ApplicationController
 
   def post_params
     # params.require(:post).permit(:property_name, :image, :caption)
-    params.require(:post).permit(:property_name, :caption, images: [])
+    params.require(:post).permit(:property_name, :caption, images: [] )
   end
 
 

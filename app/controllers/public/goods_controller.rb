@@ -1,5 +1,5 @@
 class Public:: GoodsController < ApplicationController
-
+  before_action :authenticate_user!
   def create
     post = Post.find(params[:post_id])
     good = current_user.goods.new(post_id: post.id)

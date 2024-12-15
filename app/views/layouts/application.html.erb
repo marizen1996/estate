@@ -14,15 +14,15 @@
   <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: pink;">
-      
-        <div class="container">
+
+        <div class="container-fluid">
           <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png') %></a>
           <h4 class="header_title">~ 気軽に投稿できる不動産SNS ~</h4>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
-          
+
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
     <% if user_signed_in? %>
@@ -32,83 +32,81 @@
         <i class="fa-solid fa-eye"></i> discovery
         <% end %>
       </div>
-      
+
         <div class="nav-item text-light">
         <%= link_to about_path, class: 'nav-link text-dark' do %>
         <i class="fa-solid fa-link"></i> About
         <% end %>
         </div>
-        
+
        <div class="nav-item text-light">
         <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
         <i class="fa-solid fa-right-from-bracket"></i> Log out
         <% end %>
        </div>
-       
+
         <div class="d-flex align-items-center">
         <div class="nav-item text-light">
         <%= link_to new_post_path, class: 'nav-link text-dark' do %>
         <i class="fa-solid fa-pen-to-square"></i> 投稿
         <% end %>
         </div>
-        
+
         <div class="d-flex align-items-center">
         <div class="nav-item text-light">
         <%= link_to user_path(current_user.id), class: 'nav-link text-dark' do %>
            <i class="fa-solid fa-user"></i> Mypage
         <% end %>
         </div>
-   
+
       <% else %>
-    
+
          <div class="nav-item text-light">
           <%= link_to root_path, class: 'nav-link text-dark' do %>
           <i class= "fa-solid fa-house"></i> Home
           <% end %>
           </div>
-          
+
         <div class="nav-item text-light">
         <%= link_to about_path, class: 'nav-link text-dark' do %>
         <i class="fa-solid fa-link"></i> About
         <% end %>
         </div>
-    
+
         <div class="nav-item text-light">
         <%= link_to new_user_registration_path, class: "nav-link text-dark" do %>
         <i class="fa-solid fa-user-plus"></i> sign up
         <% end %>
         </div>
-         
+
         <div class="nav-item text-light">
         <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
         <i class="fa-solid fa-right-to-bracket"></i> Log_in
         <% end %>
         </div>
     <% end %>
-    
+
     </ul>
           </div>
         </div>
       </nav>
-   
+
   </header>
   <% if @user == current_user %>
    <p id="notice"><%= notice %></p>
-        <div class="d-flex justify-content-center mb-2">
-          <%= render 'public/searches/search' %>
+        <div class="d-flex justify-content-end">
+          <%= render 'searches/search' %>
         </div>
   <% end %>
-  
     <%= yield %>
   </body>
-  
-  
+
+
   <footer class="text-white pt-4 pb-4" style="background-color: pink;">
       <div class="container">
         <div class="row no-gutters">
           <div class="col-md-4">
             <p>不動産SNS</p>
-            <!--%= image_tag('logo-white.png') %>-->
           </div>
           <div class="col-md-8">
             <h6 class="text-white mt-2 mb-3">Link</h6>
