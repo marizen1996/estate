@@ -10,6 +10,11 @@ before_action :is_matching_login_user, only: [:edit, :update]
   def edit
      @user = User.find(params[:id])
   end
+  
+  def index
+    @users = User.all
+    @post = Post.new
+  end
 
   def update
     @user = User.find(params[:id])
@@ -24,6 +29,22 @@ before_action :is_matching_login_user, only: [:edit, :update]
       redirect_to :root
   end
 
+ # フォロー機能
+   def following
+    @title = "フォロー"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+   end
+
+  def followers
+    @title = "フォロワー"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+
   private
 
   def user_params
@@ -36,5 +57,6 @@ before_action :is_matching_login_user, only: [:edit, :update]
       redirect_to posts_path
     end
   end
-
+  
+ 
 end

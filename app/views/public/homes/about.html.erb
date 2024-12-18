@@ -1,27 +1,48 @@
-  <div class="about_page_image">
-  <%= image_tag('jyuutaku.jpg', style: "width: 100%; max-height: 300px;") %>
-  </div>
+<!--  <div class="about_page_image">-->
+<!--  %= image_tag('jyuutaku.jpg', style: "width: 100%; max-height: 300px;") %>-->
+<!--  </div>-->
   <!--<div style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 40px; font-weight: bold;">-->
-   <div class="overlay_text">
-    ご自身で物件の紹介をしてみませんか？
-   </div>
+<!--   <div class="overlay_text">-->
+<!--    ご自身で物件の紹介をしてみませんか？-->
+<!--   </div>-->
    <!--</div>-->
 
-<div class="container mt-3">
-<div class="row">
+<!--<div class="container mt-3">-->
+<!--<div class="row">-->
 
-<div class="mx-auto">
+<!--<div class="mx-auto">-->
 
-  <div class="about_page">
+<!--  <div class="about_page">-->
 
-  <h2 class="about_page_heading">気軽に投稿できる不動産SNS</h2>
-  <p>
-    不動産物件を無料で掲載、利用者様が閲覧、お問い合わせ出来る
-    利用者様が不動産業者様に不動産の相談を無料で出来る
+<!--  <h2 class="about_page_heading">気軽に投稿できる不動産SNS</h2>-->
+<!--  <p>-->
+<!--    不動産物件を無料で掲載、利用者様が閲覧、お問い合わせ出来る-->
+<!--    利用者様が不動産業者様に不動産の相談を無料で出来る-->
 
-  </p>
+<!--  </p>-->
+<!--  </div>-->
+
+<!-- </div>-->
+<!-- </div>-->
+<!-- </div>-->
+ 
+ <div class="about_page_image position-relative">
+  <%= image_tag 'jyuutaku.jpg', style: "width: 100%; max-height: 300px; object-fit: cover;" %>
+  <div class="overlay_text position-absolute top-50 start-50 translate-middle text-center text-white" style="background-color: rgba(0, 0, 0, 0.5); padding: 15px 30px; border-radius: 10px;">
+    <h2 class="mb-0">ご自身で物件の紹介をしてみませんか？</h2>
   </div>
+</div>
 
- </div>
- </div>
- </div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto text-center">
+      <div class="about_page p-4 rounded shadow-sm" style="background-color: #f8f9fa;">
+        <h2 class="about_page_heading text-primary mb-3" style="font-weight: 700;">気軽に投稿できる不動産SNS</h2>
+        <p class="text-muted" style="line-height: 1.8; font-size: 1.1rem;">
+          不動産物件を無料で掲載し、利用者様が簡単に閲覧やお問い合わせが可能です。
+          また、利用者様が不動産業者様に無料で相談することができます。
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<!--ユーザー一覧ページ-->
+
+<!--< @users.each do |user| %>-->
+<!--<div class="user">-->
+<!--% end %>-->
+
+<!--<div class='container px-5 px-sm-0'>-->
+<!--  <div class='row'>-->
+
+
+
+<!--    <div class='col-md-8 offset-md-1'>-->
+<!--      <h2>Users</h2>-->
+<!--      %= render 'index',users: @users %>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</div>-->
+
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <h1 class="display-4">User Directory</h1>
+   
+  </div>
+
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-body text-center">
+            <!-- Placeholder for User Image -->
+            <div class="mb-3">
+              <% if user.profile_image.attached? %>
+                <%= image_tag user.profile_image.variant(resize_to_fill: [100, 100]), class: "rounded-circle img-thumbnail" %>
+              <% else %>
+                <%= image_tag 'default-avatar.png', class: "rounded-circle img-thumbnail", size: "100x100" %>
+              <% end %>
+            </div>
+            <!-- User Information -->
+            <h5 class="card-title"><%= link_to user.name, user_path(user), class: "text-dark fw-bold" %></h5>
+            <p class="text-muted small mb-3">Email: <%= user.email %></p>
+            
+             <td>フォロー数: <%= user.followings.count %></td>
+             <td>フォロワー数: <%= user.followers.count %></td>
+             
+            <!-- Follow Button -->
+            <% if current_user != user %>
+              <% if current_user.following?(user) %>
+                <%= link_to "Unfollow",
+                            user_relationships_path(user),
+                            method: :delete,
+                            class: "btn btn-outline-danger btn-sm" %>
+              <% else %>
+                <%= link_to "Follow",
+                            user_relationships_path(user),
+                            method: :post,
+                            class: "btn btn-outline-primary btn-sm" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
