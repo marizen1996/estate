@@ -56,7 +56,7 @@
               <%= image_tag post.images.first.variant(resize_to_fill: [600, 400]), class: "card-img-top" %>
             <% end %>
           <% else %>
-            <%= image_tag 'default-post-image.jpg', class: "card-img-top", size: "600x400" %>
+            <%= image_tag 'no_image.jpg', class: "card-img-top", size: "600x400" %>
           <% end %>
           <!-- Caption and Info -->
           <div class="card-body">
